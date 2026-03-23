@@ -22,7 +22,7 @@ public class BoardFactory {
      */
     public static Board create(int size) {
         int maxCell = size * size;
-        int entityCount = Math.max(1, size / 2);
+        int entityCount = size;
         Random rng = new Random();
 
         Set<Integer> reserved = new HashSet<>();

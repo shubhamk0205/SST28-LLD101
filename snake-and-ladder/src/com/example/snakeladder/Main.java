@@ -27,10 +27,11 @@ public class Main {
             players.add(new Player(sc.next()));
         }
 
-        // --- dice selection (strategy pattern in action) ---
-        System.out.print("Dice type (normal / crooked): ");
-        String diceChoice = sc.next().trim().toLowerCase();
-        Dice dice = buildDice(diceChoice);
+        // --- difficulty selection (strategy pattern in action) ---
+        System.out.print("Difficulty level (easy / hard): ");
+        String diffInput = sc.next().trim().toUpperCase();
+        DifficultyLevel difficulty = DifficultyLevel.valueOf(diffInput);
+        Dice dice = buildDice(difficulty);
 
         // --- wire everything together and play ---
         Board board = BoardFactory.create(n);
@@ -42,10 +43,10 @@ public class Main {
         sc.close();
     }
 
-    private static Dice buildDice(String type) {
-        switch (type) {
-            case "crooked": return new CrookedDice();
-            default:        return new NormalDice(6);
+    private static Dice buildDice(DifficultyLevel level) {
+        switch (level) {
+            case HARD: return new CrookedDice();
+            default:   return new NormalDice(6);
         }
     }
 }
